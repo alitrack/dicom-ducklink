@@ -1,0 +1,30 @@
+[package]
+name = "dicom-reader-component"
+version = "0.1.0"
+edition = "2021"
+description = "DICOM file reader for DuckDB via ducklink WASM component"
+license = "MIT"
+repository = "https://github.com/alitrack/dicom-ducklink"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen = "0.41"
+wit-bindgen-rt = "0.41"
+dicom = "0.6"
+glob = "0.3"
+
+# Columnar bridge for ducklink v4 ABI.
+# REQUIRES ducklink monorepo for full build:
+#   git clone --recurse-submodules https://github.com/tegmentum/ducklink.git ../ducklink
+#   Place this under ducklink/extensions/dicom-reader/
+datalink-extcore = { path = "../../datalink/crates/datalink-extcore" }
+
+[package.metadata.component]
+package = "duckdb:extension"
+
+[package.metadata.component.target]
+path = "./wit"
+world = "duckdb:extension/duckdb-extension"

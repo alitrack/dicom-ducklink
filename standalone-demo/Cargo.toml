@@ -1,0 +1,7 @@
+[package]
+name = "dicom-reader-standalone"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dicom = "0.6"
